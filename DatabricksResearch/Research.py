@@ -30,8 +30,19 @@ display(cred)
 
 # COMMAND ----------
 
+display(cred)
+
+# COMMAND ----------
+
 access_key = cred.filter(fx.col("username") == "S3AccessKey").select(fx.col("access_key")).collect()[0].access_key
 secret_key = cred.filter(fx.col("username") == "S3AccessKey").select(fx.col("secret_key")).collect()[0].secret_key
+edcoded_secret_key = urllib.parse.quote(secret_key,"")
+print(access_key)
+
+# COMMAND ----------
+
+access_key = dbutils.secrets.get("awsConfig" , "accesskey")
+secret_key = dbutils.secrets.get("awsConfig" , "secretkey")
 edcoded_secret_key = urllib.parse.quote(secret_key,"")
 
 # COMMAND ----------
@@ -74,5 +85,5 @@ access_key = dbutils.secrets.get("awsConfig" , "accesskey")
 
 # COMMAND ----------
 
-for char in access_key:
+for char in secret_key:
     print(char, end=" ")
