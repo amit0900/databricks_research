@@ -45,4 +45,19 @@ dbutils.fs.mount(source_uri,mount_name)
 
 # COMMAND ----------
 
-dbutils.fs.ls(mount_name)
+dbutils.fs.ls("/mnt/aws-data-migration")
+
+# COMMAND ----------
+
+# MAGIC %md Create Secrets
+
+# COMMAND ----------
+
+# # Configure Databricks CLI
+
+# 1. Go to Command Prompt - Make sure Python3 and above installed
+# 2. Type "pip install databricks-cli"
+# 3. Type the below commands after the Installation
+# 4. databricks configure --token
+# 5. Paste the databricks url till .com/.net/etc
+# 6. For the Access Token go to User Setting/Access Token and generate the token
