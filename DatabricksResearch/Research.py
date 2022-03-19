@@ -34,8 +34,6 @@ access_key = cred.filter(fx.col("username") == "S3AccessKey").select(fx.col("acc
 secret_key = cred.filter(fx.col("username") == "S3AccessKey").select(fx.col("secret_key")).collect()[0].secret_key
 edcoded_secret_key = urllib.parse.quote(secret_key,"")
 
-print(edcoded_secret_key)
-
 # COMMAND ----------
 
 s3_bucket = "aws-data-migration"
@@ -61,3 +59,20 @@ dbutils.fs.ls("/mnt/aws-data-migration")
 # 4. databricks configure --token
 # 5. Paste the databricks url till .com/.net/etc
 # 6. For the Access Token go to User Setting/Access Token and generate the token
+
+# Creating Scope
+databricks secrets create-scope --scope awsConfig
+# Listing a scope
+databricks secrets list-scope
+# Creating a secret
+databricks secrets put --scope awsConfig --key accesskey
+
+
+# COMMAND ----------
+
+access_key = dbutils.secrets.get("awsConfig" , "accesskey")
+
+# COMMAND ----------
+
+for char in access_key:
+    print(char, end=" ")
