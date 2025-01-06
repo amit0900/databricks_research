@@ -12,6 +12,10 @@ actveEmpFil.createOrReplaceTempView("azure_data")
 
 # COMMAND ----------
 
+actveEmpFil.createOrReplaceTempView("azure_data_frame")
+
+# COMMAND ----------
+
 print(actveEmpFil.count())
 
 # COMMAND ----------
